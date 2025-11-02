@@ -5,18 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InsertDemo {
+public class DeleteDemo {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         System.out.println("Program starts...");
 
         String dbUrl = "jdbc:mysql://localhost:3306/appusers";
         String username = "root";
         String password = "root";
 
-        String insertSql = "insert into appusers.users values" +
-                "(0,'DeleteUser','7654543210','pass789');";
+        String deleteSql = "Delete from appusers.users where mobile = '7654543210';";
 
         try
         {
@@ -26,10 +24,10 @@ public class InsertDemo {
 
             System.out.println("Connected to appusers-db successfully");
 
-           Statement stm1 = con.createStatement();
-           //executeUpdate(String sql): executes DML staments and returns int
-           int rowsAffected = stm1.executeUpdate(insertSql);
-           System.out.println(rowsAffected+" row(s) added");
+            Statement stm1 = con.createStatement();
+            //executeUpdate(String sql): executes DML staments and returns int
+            int rowsAffected = stm1.executeUpdate(deleteSql);
+            System.out.println(rowsAffected+" row(s) deleted");
         }
         catch (SQLException e)
         {
