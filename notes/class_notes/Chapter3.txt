@@ -1,0 +1,119 @@
+Chapter 3: Connecting to a Database
+
+3.1 JDBC Driver Types
+---------------------
+
+Type 1: JDBC-ODBC Bridge Driver
+Description: Converts JDBC calls into ODBC calls.
+Example: sun.jdbc.odbc.JdbcOdbcDriver (Deprecated)
+Advantages: Works for many databases.
+Disadvantages: Slow, platform-dependent, requires ODBC installation.
+Interview Tip: “Type 1 is outdated and not used in modern Java versions.”
+
+Type 2: Native-API Driver
+Description: Converts JDBC calls into database-specific native API calls (like C/C++ libraries).
+Example: Oracle’s OCI driver.
+Advantages: Faster than Type 1, uses vendor APIs.
+Disadvantages: Not portable, requires native libraries.
+Interview Tip: “Good performance but OS and database dependent.”
+
+Type 3: Network Protocol Driver
+Description: Uses a middleware server to convert JDBC calls into database protocol calls.
+Example: IBM’s DataDirect Connect.
+Advantages: No native libraries, can connect to multiple databases.
+Disadvantages: Slightly slower due to the extra network layer.
+Interview Tip: “Ideal for distributed enterprise applications.”
+
+Type 4: Thin Driver (Pure Java Driver)
+Description: Written entirely in Java; converts JDBC calls directly into the database’s native protocol.
+Example: com.mysql.cj.jdbc.Driver, org.postgresql.Driver
+Advantages: Best performance, portable, no native dependencies.
+Disadvantages: Database-specific.
+Interview Tip: “Type 4 is the most widely used driver today.”
+
+-------------------------------------------------------------
+
+3.2 DriverManager Class
+-----------------------
+The DriverManager class is the backbone of JDBC, managing registered drivers and connections.
+
+Key Responsibilities:
+- Registers drivers.
+- Establishes database connections.
+- Manages multiple driver types.
+
+Important Methods:
+- registerDriver(Driver driver): Registers a driver.
+- getConnection(String url): Connects using a URL.
+- getConnection(String url, String user, String password): Connects with credentials.
+
+----------------------------------------------------------
+
+3.3 Establishing a Connection
+-----------------------------
+Steps:
+1. Load JDBC Driver: Class.forName("com.mysql.cj.jdbc.Driver");
+2. Create a Connection: DriverManager.getConnection(url, user, password);
+3. Perform SQL Operations: Create Statement or PreparedStatement.
+4. Close Connection: con.close();
+
+----------------------------------------------------------
+
+3.4 Connection URLs
+
+The connection URL tells Java which database to connect to.
+
+Syntax:
+jdbc:subprotocol://host:port/databaseName
+
+Examples:
+- MySQL: jdbc:mysql://localhost:3306/mydatabase
+- PostgreSQL: jdbc:postgresql://localhost:5432/mydatabase
+- Oracle: jdbc:oracle:thin:@localhost:1521:orcl
+- SQL Server: jdbc:sqlserver://localhost:1433;databaseName=mydatabase
+
+Components:
+jdbc        : Protocol (always starts with jdbc)
+subprotocol : Database type (mysql, oracle)
+host        : Database server hostname or IP
+port        : Database port number
+databaseName: Target database
+
+
+----------------------------------------------------------
+3.5 Handling Connection Failures
+--------------------------------
+Common Failure Causes:
+- Wrong URL or credentials
+- Database server not running
+- Driver missing from classpath
+- Network connectivity issues
+
+Example:
+---------
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConnectionHandling {
+    public static void main(String[] args) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/mydatabase";
+        String username = "root";
+        String password = "password";
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+            System.out.println("Connection established successfully.");
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Database access error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+
+Common Exceptions:
+- ClassNotFoundException: Driver not found in classpath.
+- SQLException: Invalid URL, username, or password.
+- SQLTimeoutException: Connection timed out due to network delay.
+
+----------------------------------------------------------

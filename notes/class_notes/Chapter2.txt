@@ -1,0 +1,121 @@
+Chapter 2: Setting up JDBC Environment
+
+2.1 Prerequisites
+-----------------
+Before starting JDBC development, you must have both the software and basic knowledge required to build Java applications that connect to databases.
+
+Software Requirements:
+1. Java Development Kit (JDK):
+   - You must have JDK 8 or higher installed because JDBC is part of the Java Standard Edition.
+   - Check your JDK version using: java -version
+   - JDBC classes like DriverManager, Connection, and ResultSet are part of java.sql package.
+
+2. Database System (DBMS):
+   - Install a relational database such as MySQL, PostgreSQL, Oracle, or SQL Server.
+   - Each database requires a specific JDBC driver.
+
+3. JDBC Driver:
+   - A .jar file that acts as a bridge between Java code and your database.
+   - Examples:
+       - MySQL: mysql-connector-j-<version>.jar
+       - PostgreSQL: postgresql-<version>.jar
+       - Oracle: ojdbc8.jar
+       - SQL Server: mssql-jdbc-<version>.jar
+
+Hardware Requirements:
+   - Minimum 8 GB RAM and 2 CPU cores recommended for local development.
+
+Skills Required:
+   - Basic Java programming (OOPs, exceptions)
+   - Basic SQL (SELECT, INSERT, UPDATE, DELETE)
+   - Understanding of tables, primary keys, and relationships
+
+-------------------------------------------------------------
+
+2.2 Installing JDBC Drivers
+---------------------------
+Each database requires its own JDBC driver, which must be added to your classpath.
+
+MySQL:
+1. Download Connector/J from https://dev.mysql.com/downloads/connector/j/
+2. Extract the ZIP file.
+3. Add mysql-connector-j-<version>.jar to your project classpath.
+
+PostgreSQL:
+1. Download from https://jdbc.postgresql.org/download.html
+2. Add postgresql-<version>.jar to your classpath.
+
+Oracle:
+1. Download ojdbc8.jar from https://www.oracle.com/database/technologies/appdev/jdbc-ucp-downloads.html
+2. Add it to your classpath.
+
+SQL Server:
+1. Download from https://docs.microsoft.com/en-us/sql/connect/jdbc/
+2. Add mssql-jdbc-<version>.jar to your classpath.
+
+----------------------------------------------------------
+
+2.3 Setting Up a Database
+--------------------------
+After installing the driver, set up a working database instance.
+
+For MySQL:
+1. Install MySQL server.
+2. Start the service.
+3. Create a new database:
+   CREATE DATABASE mydatabase;
+
+For PostgreSQL:
+1. Install PostgreSQL.
+2. Start the server.
+3. CREATE DATABASE mydatabase;
+
+For Oracle:
+1. Install Oracle Database Express Edition.
+2. Use Database Configuration Assistant (DBCA) to create the database.
+
+For SQL Server:
+1. Install SQL Server and SQL Server Management Studio.
+2. CREATE DATABASE mydatabase;
+
+----------------------------------------------------------
+
+
+2.4 Verifying Installation
+---------------------------
+Once everything is configured, test the connection with a simple program.
+
+Example Code:
+--------------
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class JDBCSetupVerification {
+    public static void main(String[] args) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/mydatabase";
+        String username = "root";
+        String password = "password";
+
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+
+            System.out.println("JDBC setup verified successfully!");
+        } 
+         catch (SQLException e) {
+            System.out.println("Database access error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+
+Explanation:
+1. Load the Driver
+2. Establish Connection
+3. Create Statement
+4. Execute Query
+5. Close Resources
+
+----------------------------------------------------------

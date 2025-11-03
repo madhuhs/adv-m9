@@ -1,0 +1,115 @@
+Chapter 1: Introduction to JDBC
+   1.1 What is JDBC? 
+   1.2 History and Evolution of JDBC 
+   1.3 Why Use JDBC? 
+   1.4 Overview of JDBC Architecture 
+   1.5 JDBC API Components
+
+1.1 What is JDBC?
+-----------------
+JDBC (Java Database Connectivity) is a standard API (Application Programming Interface) in Java that defines how a Java program can connect to and interact with a relational database. 
+
+It allows Java applications to send SQL queries, retrieve results, and perform updates on databases like MySQL, PostgreSQL, or Oracle — in a database-independent manner.
+
+Purpose:
+* Before JDBC, developers had to use proprietary, vendor-specific APIs to communicate with databases. 
+
+* JDBC unified this process under a single standard 
+  interface.
+
+Key Points:
+✅ JDBC stands for Java Database Connectivity – It’s part of the Java Standard Edition and is included in the java.sql package.
+
+✅ JDBC provides database independence – You can write one set of code that can work across multiple databases by simply changing the driver.
+
+✅ JDBC uses SQL for database communication – It sends SQL queries to the database and gets back results as objects (ResultSet).
+
+✅ JDBC supports both read and write operations – You can perform CRUD (Create, Read, Update, Delete) operations using it.
+
+✅ JDBC follows a client-server model – The Java application acts as the client and communicates with the database server through the JDBC driver.
+
+----------------------------------------------------------
+
+1.2 History and Evolution of JDBC
+---------------------------------
+JDBC was first introduced by Sun Microsystems (now Oracle) in 1997 as part of Java 1.1. Over the years, it evolved to include modern features required by enterprise applications.
+
+Major Milestones:
+- JDBC 1.0 (1997): Basic database connectivity — connect, execute queries, and get results.
+- JDBC 2.0 (1999): Introduced batch updates, scrollable and updatable result sets.
+- JDBC 3.0 (2002): Added savepoints, auto-generated keys, and better connection pooling.
+- JDBC 4.0 (2006): Introduced auto-closeable resources, XML support, and better exception handling.
+- JDBC 4.1 (2011): Added support for try-with-resources statement.
+- JDBC 4.2 (2014): Integrated with java.time API for better date/time handling.
+
+
+----------------------------------------------------------
+
+1.3 Why Use JDBC?
+-----------------
+JDBC is the standard way for Java applications to connect to databases. Without JDBC, each database would require a separate, proprietary API.
+
+Advantages of using JDBC:
+
+1. Database Independence: Code written once can run on multiple databases by just changing the driver and URL.
+
+2. Ease of Use: Simple API methods like executeQuery() and executeUpdate() make SQL operations straightforward.
+
+3. Scalability: JDBC handles multiple connections efficiently using connection pooling and transactions.
+
+4. Rich Functionality: Supports transactions, batch processing, metadata access, stored procedures, and large object (BLOB/CLOB) handling.
+
+----------------------------------------------------------
+
+1.4 Overview of JDBC Architecture
+---------------------------------
+JDBC architecture consists of two layers:
+1. JDBC API Layer (Application Side): Defines a set of interfaces and classes for database interaction (e.g., Connection, Statement, ResultSet).
+2. JDBC Driver Layer (Database Side): A database-specific implementation that translates JDBC calls into database protocol calls.
+
+Flow of JDBC Architecture:
+1. Load the driver using Class.forName().
+2. DriverManager registers the driver.
+3. Connection is established with the database.
+4. Statement or PreparedStatement executes SQL queries.
+5. Results are returned in a ResultSet.
+6. Close all resources.
+
+Key Classes and Interfaces:
+java.sql.Connection;
+java.sql.DriverManager;
+java.sql.SQLException;
+java.sql.Statement;
+
+- DriverManager    : Manages database drivers and 
+                     connections.
+
+- Connection       : Represents a live session with the 
+                     database.
+
+- Statement        : Used to execute SQL queries.
+
+- PreparedStatement: Used for parameterized and 
+                     precompiled queries.
+
+- ResultSet        : Represents tabular data retrieved 
+                     from the database.
+
+-------------------------------------------------------------
+
+1.5 JDBC API Components
+-----------------------
+The JDBC API resides mainly in the java.sql package and defines interfaces for interacting with databases.
+
+Core Components:
+1. DriverManager: Acts as the connection broker, loading drivers and establishing connections.
+
+2. Connection: Represents a session with the database. Used for transaction management (commit/rollback).
+
+3. Statement: Executes static SQL queries.
+
+4. PreparedStatement: Precompiled SQL statement reused with different inputs; prevents SQL injection.
+
+5. ResultSet: Holds query results and provides cursor-based navigation.
+
+6. SQLException: Handles database access errors with detailed messages and error codes.

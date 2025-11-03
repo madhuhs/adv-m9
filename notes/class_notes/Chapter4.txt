@@ -1,0 +1,60 @@
+Chapter 4: Working with Statements and PreparedStatements
+
+4.1 Introduction
+----------------
+In JDBC, once a connection to the database is established, you need a way to send SQL queries and retrieve results. 
+This is where Statement and PreparedStatement interfaces come in.
+
+Statement – Used for static SQL queries.
+PreparedStatement – Used for dynamic, parameterized SQL queries.
+
+Statement executes the same SQL text every time, while PreparedStatement allows input parameters (?) that can vary each execution.
+
+-------------------------------------------------------------
+
+4.2 The Statement Interface
+----------------------------
+Definition:
+The Statement interface is used to execute static SQL queries that do not require parameters.
+
+Key Methods of Statement:
+- executeQuery(String sql): Executes SELECT queries and returns a ResultSet.
+- executeUpdate(String sql): Executes INSERT, UPDATE, DELETE, or DDL queries and returns affected row count.
+- execute(String sql): Executes any SQL statement (returns true if there’s a ResultSet).
+- close(): Closes the Statement.
+
+When to Use Statement:
+- When SQL query is static (no variable input).
+- For DDL operations like CREATE TABLE, ALTER TABLE, DROP TABLE.
+
+4.3 The PreparedStatement Interface
+-----------------------------------
+Definition:
+A PreparedStatement is a precompiled SQL statement that can accept parameters at runtime. 
+It improves performance and prevents SQL injection attacks.
+
+Benefits of PreparedStatement:
+1. Performance – Query is compiled once and reused.
+2. Security – Prevents SQL Injection.
+3. Cleaner code – Parameters (?) make it easier to modify values.
+
+Common Methods:
+- setInt(int parameterIndex, int value)
+- setString(int parameterIndex, String value)
+- executeQuery()
+- executeUpdate()
+- addBatch(), executeBatch()
+
+-------------------------------------------------------------
+
+4.4 Comparison: Statement vs PreparedStatement
+---------------------------------------------------------------------------
+| Feature      | Statement                | PreparedStatement              |
+|--------------|--------------------------|--------------------------------|
+| Compilation  | Compiled every time      | Compiled once and reused       |
+| Parameters   | Not supported            | Supported using ? placeholders |
+| Performance  | Slower                   | Faster for repeated queries    |
+| Security     | Prone to SQL Injection   | Safe against SQL Injection     |
+| Use Case     | Static SQL               | Dynamic SQL                    |
+---------------------------------------------------------------------------
+
