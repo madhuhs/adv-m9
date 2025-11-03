@@ -1,6 +1,60 @@
-Chapter 4: Working with Statements and PreparedStatements
+Chapter 4: Working with Statements and PreparedStatements to execute SQL statements
 
-4.1 Introduction
+
+4.1 Overview of SQL Commands
+----------------
+Structured Query Language (SQL) is the standard language used to communicate with databases. SQL commands can be categorized into several
+types:
+
+Categories of SQL Commands:
+
+DDL (Data Definition Language): Used to define and manage database structures.
+
+CREATE: Creates new database objects like tables, indexes, and views.
+
+ALTER : Modifies existing database objects.
+
+DROP: Deletes database objects.
+
+----------------
+DML (Data Manipulation Language):
+
+Used to manipulate data stored in database objects.
+
+INSERT: Adds new rows to a table.
+
+UPDATE : Modifies existing rows in a table.
+
+DELETE : Removes rows from a table.
+
+----------------
+
+DQL (Data Query Language): Used to query data from the database.
+
+SELECT: Retrieves data from one or more tables.
+
+----------------
+
+DCL (Data Control Language): Used to control access to data within the database.
+
+GRANT: Gives user access privileges to the database.
+
+REVOKE: Removes user access privileges.
+
+----------------
+
+TCL (Transaction Control Language):  Used to manage transactions in the database.
+
+COMMIT: Saves all changes made during the transaction.
+
+ROLLBACK : Undoes all changes made during the transaction.
+
+SAVEPOINT : Sets a savepoint within a transaction.
+
+----------------
+
+
+4.2 Statement and PreparedStatement
 ----------------
 In JDBC, once a connection to the database is established, you need a way to send SQL queries and retrieve results. 
 This is where Statement and PreparedStatement interfaces come in.
@@ -12,7 +66,7 @@ Statement executes the same SQL text every time, while PreparedStatement allows 
 
 -------------------------------------------------------------
 
-4.2 The Statement Interface
+4.3 The Statement Interface
 ----------------------------
 Definition:
 The Statement interface is used to execute static SQL queries that do not require parameters.
@@ -27,7 +81,7 @@ When to Use Statement:
 - When SQL query is static (no variable input).
 - For DDL operations like CREATE TABLE, ALTER TABLE, DROP TABLE.
 
-4.3 The PreparedStatement Interface
+4.4 The PreparedStatement Interface
 -----------------------------------
 Definition:
 A PreparedStatement is a precompiled SQL statement that can accept parameters at runtime. 
@@ -47,7 +101,7 @@ Common Methods:
 
 -------------------------------------------------------------
 
-4.4 Comparison: Statement vs PreparedStatement
+4.5 Comparison: Statement vs PreparedStatement
 ---------------------------------------------------------------------------
 | Feature      | Statement                | PreparedStatement              |
 |--------------|--------------------------|--------------------------------|
