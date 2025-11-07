@@ -44,3 +44,30 @@ connection.commit();
 3. Rolling Back a Transaction
    If an error occurs, the transaction can be rolled back to undo all operations
 connection.rollback();
+
+
+6.3 Savepoint:
+    Savepoint allow you to set intermediate points within a transaction.
+    If an error occurs, you can roll back to a specific savepoint
+    instead of the entire transaction.
+    Creating a Savepoint:
+    Savepoint savepoint1 = connection.setSavepoint("Savepoint 1");
+
+    Rolling Back to a Savepoint:
+    connection.rollback(savepoint1);
+
+6.4 Best Practices for Transaction
+Group related operations into a single transaction to
+maintain data integrity.
+Avoid long-running transactions to minimize locking contention.
+
+Handle Exceptions Properly Always roll back the
+transaction in case of an error.
+
+Use appropriate exception handling mechanisms to ensure
+transactions are managed correctly.
+
+Use Savepoints carefully to provide finer control over transactions.
+
+Consistent State Management Ensure that the application leaves the database
+in a consistent state, regardless of whether transactions succeed or fail.

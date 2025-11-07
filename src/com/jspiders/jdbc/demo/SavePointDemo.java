@@ -2,14 +2,14 @@ package com.jspiders.jdbc.demo;
 
 import java.sql.*;
 
-public class TransactionsDemo {
-
+public class SavePointDemo {
     private  static  final String dbUrl = "jdbc:mysql://localhost:3306/appusers";
     private  static  final String username = "root";
     private  static  final String password = "root";
     private  static Connection con = null;
     public static void main(String[] args) {
         System.out.println("Program starts...");
+        Savepoint svp1 = null;
         try
         {
             con = DriverManager.getConnection(dbUrl,username,password);
@@ -22,9 +22,11 @@ public class TransactionsDemo {
             stmt1.executeUpdate(insertSql);
             System.out.println("Adding user successful");
 
+            svp1 = con.setSavepoint("SavePoint1");
+
             System.out.println("Update user");
             String updateSql = "update appusers.users " +
-                               "set mobile = '2000000000' where mobile = '7654543210';";
+                    "set mobile = '2000000000' where mobile = '7654543210';";
             Statement stm2 = con.createStatement();
             int rowsAffected = stm2.executeUpdate(updateSql);
             if(rowsAffected == 0)
@@ -38,7 +40,7 @@ public class TransactionsDemo {
         {
             try
             {
-                con.rollback();//dont save
+                con.rollback(svp1);//dont save
                 System.err.println("TRANSACTION FAILED!!!");
                 System.err.println("ROLLBACK CHANGES");
             }
@@ -49,19 +51,7 @@ public class TransactionsDemo {
             e.printStackTrace();
         }
 
-
         System.out.println("Program ends...");
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
