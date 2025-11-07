@@ -101,7 +101,7 @@ Common Methods:
 
 -------------------------------------------------------------
 
-4.5 Comparison: Statement vs PreparedStatement
+4.5, Comparison: Statement vs PreparedStatement
 ---------------------------------------------------------------------------
 | Feature      | Statement                | PreparedStatement              |
 |--------------|--------------------------|--------------------------------|
