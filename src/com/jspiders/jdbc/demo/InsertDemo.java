@@ -33,10 +33,8 @@ public class InsertDemo {
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
-            System.out.println("Unable to connect to appusers-db ");
+            throw new DuplicatePhoneNumberException("User with mobile number already exists");
         }
-
         System.out.println("Program ends...");
 
     }

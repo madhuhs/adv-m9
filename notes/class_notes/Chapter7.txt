@@ -1,0 +1,65 @@
+Chapter-7 : Exception Handling in JDBC
+
+Types of Exceptions in JDBC
+In JDBC, exceptions can broadly be classified into two types:
+
+7.1.1 SQL Exceptions
+SQLException: This is the base class for all SQL-related exceptions.
+
+SQLWarning:A subclass of SQLException, representing warnings that can
+occur during database access.
+
+7.1.2 Java Exceptions
+ClassNotFoundException: Occurs when the JDBC driver class is not found.
+IOException: Can occur when there are issues with input/output
+operations, particularly when dealing with LOBs (Large Objects).
+
+7.2 SQLException and SQLWarning
+
+7.2.1 SQLException
+
+Description: An exception that provides information on a database access
+error or other errors.
+Common Causes:
+* Invalid SQL syntax
+* Connectivity issues
+* Data integrity violations
+
+7.2.2 SQLWarning
+Description: A subclass of SQLException that represents database access
+warnings.
+Characteristics:
+* Does not stop the execution of the application.
+* Can be retrieved using the
+* Statement, and ResultSet objects. method on Connection,
+
+7.3 Handling SQL Exceptions
+
+Basic Exception Handling
+
+Handling SQL exceptions typically involves catching the SQLException and
+performing appropriate actions such as logging the error, notifying the user, or retrying the operation.
+
+Custom Exception Handling Strategies
+
+Creating Custom Exceptions
+Define custom exceptions to handle specific scenarios in a more meaningful
+way.
+
+Throwing Custom Exceptions
+
+Convert generic SQLExceptions into custom exceptions to provide better
+context.
+
+Handling Custom Exceptions
+
+Handle custom exceptions at higher layers of the application to provide user-
+friendly error messages and perform corrective action
+
+
+Use of Finally Block
+
+Always use a block to close database resources (connections,
+statements, result sets) to avoid resource leaks.
+
+

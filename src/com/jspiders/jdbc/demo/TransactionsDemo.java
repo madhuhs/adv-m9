@@ -44,9 +44,9 @@ public class TransactionsDemo {
             }
             catch (SQLException ex)
             {
-                ex.printStackTrace();
+               // ex.printStackTrace();
             }
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
 
