@@ -1,0 +1,46 @@
+Chapter 8: Working with Metadata
+8.1 Database Metadata
+
+8.1.1 Introduction to Database Metadata
+Database metadata : provides comprehensive information about the database
+itself, such as database product name, version, driver information, and more.
+It allows you to query the database for details about its structure and capabilities.
+
+
+8.1.2 Accessing Database Metadata
+The DatabaseMetaData  interface provides methods to get information about the database.
+
+8.1.3 Useful Methods in DatabaseMetaData
+getDatabaseProductName()   : Returns the name of the database product.
+
+getDatabaseProductVersion(): Returns the version of the database product.
+
+getDriverName()            : Returns the name of the JDBC driver.
+
+getDriverVersion()         : Returns the version of the JDBC driver.
+
+getTables()                : Retrieves a list of table names in the database.
+
+getColumns()               : Retrieves a list of columns in a specified table.
+
+8.2 ResultSet Metadata
+
+8.2.1 Introduction to ResultSet Metadata
+ResultSet metadata provides information about the types and properties of the
+columns in a ResultSet.
+
+8.2.2 Accessing ResultSet Metadata
+The interface ResultSetMetadata provides methods to get information about the
+columns in a ResultSet.
+
+8.2.3 Useful Methods in ResultSetMetaData
+getColumnCount()                : Returns the number of columns in the ResultSet.
+
+getColumnName(int column)       : Returns the name of the specified column.
+
+getColumnTypeName(int column)   : Returns the SQL type name of the specified column.
+
+isNullable(int column)          : Indicates whether the specified column can contain null values.
+
+getColumnDisplaySize(int column): Returns the maximum number of
+                                  characters that can be displayed for the specified column.

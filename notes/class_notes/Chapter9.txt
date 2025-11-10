@@ -1,0 +1,44 @@
+Chapter 9: Connection Pooling
+
+9.1 Importance of Connection Pooling
+
+9.1.1 What is Connection Pooling?
+* Connection pooling is a technique used
+  to manage a pool of database connections that can be reused across
+  multiple requests.
+* This eliminates the overhead of establishing a new connection for each request,
+  thus improving the performance and scalability of database-driven applications.
+
+9.1.2 Benefits of Connection Pooling
+Performance Improvement : Reduces the time taken to establish and close connections,
+                          resulting in faster database operations.
+
+Resource Management     : Controls the number of connections to the database,
+                          preventing resource exhaustion and managing load efficiently.
+
+Scalability             : Supports a large number of concurrent database requests by efficiently
+                          reusing connection
+
+9.2 Implementing Connection Pooling
+9.2.1 Using HikariCP :
+      HikariCP is a popular high-performance JDBC connection pool library.
+      It is lightweight, easy to configure, and provides excellent performance.
+
+10.2.2 Basic Configuration with HikariCP
+
+Step 1: Add HikariCP Dependency.
+Step 2: Configure HikariCP Create a configuration class to set up the HikariCP connection pool.
+Step 3: Using the DataSource Use the to get connections from the pool instead of creating
+        new connections directly.
+
+
+HikariConfig config = new HikariConfig();
+config.setJdbcUrl("jdbc:mysql://localhost:3306/yourdatabase");
+config.setUsername("yourusername");
+config.setPassword("yourpassword");
+
+config.setMaximumPoolSize(10); // Maximum number of connections in the pool
+config.setMinimumIdle(5); // Minimum number of idle connections
+config.setConnectionTimeout(30000); // Connection timeout in milliseconds
+config.setIdleTimeout(600000); // Idle timeout in milliseconds
+HikariDataSource dataSource = new HikariDataSource(config);

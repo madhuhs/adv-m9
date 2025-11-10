@@ -1,0 +1,56 @@
+5.1 Introduction to ResultSet
+
+* A ResultSet is a temp table of data representing the results of a query.
+
+* The data is retrieved by executing SQL statements using Statement,PreparedStatement objects.
+
+* ResultSet provides methods to navigate through the data, retrieve values from the columns,
+  and update the data.
+
+Navigation Methods
+next()            : Moves the cursor forward one row.
+
+previous()        : Moves the cursor backward one row.
+
+first()           : Moves the cursor to the first row.
+
+last()            : Moves the cursor to the last row.
+
+beforeFirst()     : Moves the cursor to a position before the first row.
+
+afterLast()       : Moves the cursor to a position after the last row.
+
+absolute(int row) : Moves the cursor to the specified row number.
+
+relative(int rows : Moves the cursor a relative number of rows from the current row.
+
+
+Example Code :
+
+if (resultSet.first())
+{  System.out.println("First row: " + resultSet.getString ("name"));
+}
+
+if (resultSet.last())
+{ System.out.println("Last row: " + resultSet.getString("name"));
+}
+
+if (resultSet.absolute(2))
+{ System.out.println("Second row: " + resultSet.getString ("name"));
+}
+
+5.2 Retrieving Data from ResultSet
+*Data can be done by using various getxxx() methods of ResultSet.
+* These methods are used to retrieve column values based on the column name or index.
+
+Common get methods
+
+getString(int columnIndex) : Retrieves the value of the specified column as a String.
+
+getInt(int columnIndex): Retrieves the value of the specified column as an integer.
+
+getDouble(int columnIndex) : Retrieves the value of the specified column as a Double.
+
+getDate(int columnIndex): Retrieves the value of the specified column as a Date.
+
+getBoolean(int columnIndex):Retrieves the value of the specified column as a boolean.
