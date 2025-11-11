@@ -1,0 +1,34 @@
+Chapter - 10 : Best Practices and Security
+
+ * Importance of Security in JDBC Securing JDBC code is crucial to protect sensitive data,
+  prevent unauthorized access, and safeguard against common vulnerabilities such as
+  SQL injection and data breaches.
+
+  What is SQL Injection?
+ * SQL injection is a code injection technique that allows attackers to execute malicious SQL statements.
+   This can lead to unauthorized access, data corruption, or data theft.
+
+  Preventing SQL Injection
+ * Use Prepared Statements: As shown above, using PreparedStatement primary defense against SQL injection.
+ * Input Validation: Validate and sanitize all user inputs to ensure they conform to expected formats.
+
+
+
+10.3 Performance Tuning
+
+ * Optimizing Queries : Write efficient SQL queries to minimize execution time and resource usage.
+                            * avoid unnecessary columns,
+                            * Use indexing to make search faster
+                            * prefer joins over sub-queries.
+
+ * Connection Pooling : Use connection pooling to manage database connections efficiently.
+                            Libraries like HikariCP or C3P0 can help improve performance and scalability.
+
+ * Caching            : Implement caching for frequently accessed data to reduce database
+                            load and improve response times.
+
+ * Batch Processing   : Use batch processing for executing multiple SQL statements in a single transaction,
+                            reducing the number of database round-trips.
+
+10.4 Resource Management
+ * Always close database resources such as Connection,Statement and ResultSet to prevent resource leaks.

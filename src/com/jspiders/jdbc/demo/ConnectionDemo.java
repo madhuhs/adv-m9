@@ -12,11 +12,11 @@ public class ConnectionDemo {
         String dbUrl = "jdbc:mysql://localhost:3306/testDB";
         String username = "root";
         String password = "root";
-
+        Connection connection = null;
         try
         {
             //establish the connection with DataBase
-           Connection connection =
+            connection =
                    DriverManager.getConnection(dbUrl,username,password);
 
             System.out.println("Datatbase connection successfull");
@@ -25,6 +25,14 @@ public class ConnectionDemo {
         {
             e.printStackTrace();
             System.out.println("Unable to connect to the DataBase");
+
+        }
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         System.out.println("Program ends...");
